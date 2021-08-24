@@ -1,0 +1,53 @@
+import random
+from random import randint
+
+
+def game():
+    print("HI THERE")
+    print("------------------------------------------------")
+    gennumber = random.randint(1000, 9999)
+    gennumberarray = [int(i) for i in str(gennumber)]
+    print("I'VE GENERATED A RANDOM 4 DIGIT NUMBER FOR YOU.")
+    print("LET'S PLAY BULLS AND COWS GAME.")
+    print("------------------------------------------------")
+    inputnumber = 0
+    while inputnumber != gennumber:
+        bulls = 0
+        cows = 0
+        x = 0
+        y = 0
+        i = 0
+        inputnumber = int(input("ENTER A NUMBER: "))
+        print("------------------------------------------------")
+        inputnumberarray = [int(i) for i in str(inputnumber)]
+        if inputnumber >= 1000 and inputnumber <= 9999:
+
+            while x != 3:
+                if inputnumberarray[x] == gennumberarray[x]:
+                    bulls += 1
+                x += 1
+
+            i = len(list(set(inputnumberarray).intersection(gennumberarray)))
+
+            cows = i - bulls
+
+            if bulls == 1:
+                if cows == 1:
+                    print(str(bulls) + " bull, " + str(cows) + " cow")
+                elif cows > 1 or cows == 0:
+                    print(str(bulls) + " bull, " + str(cows) + " cows")
+            elif bulls > 1 or bulls <= 0:
+                if cows == 1:
+                    print(str(bulls) + " bulls, " + str(cows) + " cow")
+                elif cows > 1 or cows <= 0:
+                    print(str(bulls) + " bulls, " + str(cows) + " cows")
+            print("------------------------------------------------")
+
+        elif inputnumber < 1000 or inputnumber > 9999:
+            print("NUMBER WITH INCORRECT LENGHT INPUTTED!")
+            print("------------------------------------------------")
+    print("YOU WIN")
+
+
+game()
+

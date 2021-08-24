@@ -1,0 +1,87 @@
+TEXTS = ['''
+Situated about 10 miles west of Kemmerer
+Fossil Butte, is a ruggedly impressive,
+topographic feature that rises sharply
+some 1000 feet above Twin Creek Valley
+to an elevation of more than 7500 feet
+above sea level. The butte is located just
+north of US 30N and the Union Pacific Railroad,
+which traverse the valley. ''',
+
+'''At the base of Fossil Butte are the bright
+red, purple, yellow and gray beds of the Wasatch
+Formation. Eroded portions of these horizontal
+beds slope gradually upward from the valley floor
+and steepen abruptly. Overlying them and extending
+to the top of the butte are the much steeper
+buff-to-white beds of the Green River Formation,
+which are about 300 feet thick.''',
+
+'''The monument contains 8198 acres and protects
+a portion of the largest deposit of freshwater fish
+fossils in the world. The richest fossil fish deposits
+are found in multiple limestone layers, which lie some
+100 feet below the top of the butte. The fossils
+represent several varieties of perch, as well as
+other freshwater genera and herring similar to those
+in modern oceans. Other fish such as paddlefish,
+garpike and stingray are also present.'''
+]
+
+username = ["bob", "ann", "mike", "liz"]
+password = ["123", "pass123", "password123", "pass123"]
+cara = "-" *35
+usernamelen = len(username) - 1
+
+def findSum(str1):
+    temp = "0"
+    Sum = 0
+
+    for ch in str1:
+        if (ch.isdigit()):
+            temp += ch
+        else:
+            Sum += int(temp)
+            temp = "0"
+    return Sum + int(temp)
+
+def login():
+    x=0
+    usernameinput = input("USERNAME: ")
+    passwordinput = input("PASSWORD: ")
+    while x != usernamelen:
+        if usernameinput == username[x] and passwordinput == password[x]:
+            texts(x)
+        x += 1
+        print("INCORRECT USERNAME OR PASSWORD!")
+        exit(0)
+
+def texts(x):
+    print(cara)
+    print("WELCOME TO THE APP, " + username[x])
+    print("WE HAVE 3 TEXTS TO BE ANALYZED.")
+    print(cara)
+    textselect = int(input("ENTER A NUMBER BTW. 1 AND 3 TO SELECT: "))
+    if textselect in (1, 2, 3):
+        textselect -= 1
+        thetext = TEXTS[textselect].split()
+        print(cara)
+        print("THERE ARE " + str(len(thetext)) + " WORDS IN THE SELECTED TEXT.")
+        print("THERE ARE " + str(sum(c.istitle() for c in thetext)) + " TITLECASED WORDS.")
+        print("THERE ARE " + str(sum(c.isupper() for c in thetext)) + " UPPERCASE WORDS.")
+        print("THERE ARE " + str(sum(c.islower() for c in thetext)) + " LOWERCASE WORDS.")
+        print("THERE ARE " + str(sum(c.isnumeric() for c in thetext)) + " NUMERIC STRINGS.")
+        print("THE SUM OF ALL THE NUMBERS " + str(findSum(thetext)))
+        print(cara)
+        c=[len(i) for i in thetext]
+        counts=[0]*max(c)
+        for i in range(len(c)):
+            counts[c[i]-1]+=1
+
+        print(counts)
+
+    else:
+        print("INCORRECT NUMBER SELECTED!")
+        exit(0)
+
+login()
