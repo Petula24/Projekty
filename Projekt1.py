@@ -36,7 +36,7 @@ if registered.get(usernameinput) == passwordinput:
     print("Welcome", usernameinput, "!")
     print(cara)
 else:
-    print("Error! You are not a registred")
+    print("Error! You are not registred")
     exit()
 
 print(cara)
@@ -47,7 +47,7 @@ text_number = (input("ENTER A NUMBER BTW. 1 AND 3 TO SELECT: "))
 if text_number == "1" or text_number == "2" or text_number == "3":
     print(cara)
 else:
-    print("Error! It´s not integeer")
+    print("Error! It´s not integer")
     exit()
 text_number = int(text_number)
 text_selected = (TEXTS[text_number - 1].split())
@@ -60,13 +60,13 @@ count = len([c for c in text_selected if c.isnumeric()])
 print("There are", count, "numeric strings.")
 print(cara)
 
-clean_text = [word0.strip(',.!?') for word0 in text_selected]
+clean = [word0.strip(',.!?') for word0 in text_selected]
 letters = {}
-for i in clean_text:
-    if len(i) not in letters:
-        letters[len(i)] = 1
+for x in clean:
+    if len(x) not in letters:
+        letters[len(x)] = 1
     else:
-        letters[len(i)] += 1
+        letters[len(x)] += 1
 letters_counts = sorted(letters.items(), key=lambda x: x[0])
 for c in letters_counts:
     print(str(c[0]), "|", ("*" * c[1]), "|", str(c[1]), )
